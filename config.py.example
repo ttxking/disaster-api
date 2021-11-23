@@ -1,0 +1,5 @@
+OPENAPI_AUTOGEN_DIR = 'autogen'
+DB_HOST = '<database hostnmae or ip address>'
+DB_USER = 'databse user'
+DB_PASSWD = 'database password'
+DB_NAME = 'database name'
