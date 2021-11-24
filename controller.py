@@ -32,6 +32,28 @@ def get_earthquake_details(province):
         result = [models.EarthquakeDetail(*row) for row in cs.fetchall()]
         return result
 
-def get_average_magnitude(province):
-    pass
+def get_average_magnitude_and_phrase(province):
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT ROUND(AVG(magnitude),2) average_magnitude, ROUND(AVG(phrase),2) average_phrase
+            FROM(
+            SELECT  center, magnitude, date, lat, lon, depth, phrase
+            FROM earthquake
+            WHERE center like %s) eq
+        """, [pro])
+        result = cs.fetchone()
+        if result:
+            return models.EarthquakeAverage(*result)
+        else:
+            abort(404)
+
+def get_landslide():
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT province, `risk-landslide-area`
+            FROM landslide
+        """)
+        result = [models.LandslideBasic(*row) for row in cs.fetchall()]
+        return result
 
