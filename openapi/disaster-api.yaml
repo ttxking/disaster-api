@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: Disaster in Thailand API
+  description: |
+    This API provides information about common natural disaster happening in Thailand. 
+    It's sperated into 4 categories:
+    * Overall monthly natural disaster in each region of Thailand. Raw data provided by Thai Meteorogical DepartMent (TMD).
+    * Earthquake data in Thailand between 2011 and 2021. Raw data provided by Eathquake Observation Division.
+    * Landslide risks area in Thailand. Raw data provided by Departmet of Mineral Resources (DMR).
+    * Rainfall and storm data gathered by our group in Google form.
+  version: 3.0.0
+servers:
+  - url: /disaster-api
+paths:
+  /earthquake:
+    get:
+      summary: Returns a list of earthquake happening in Thailand.
+      tags: 
+        - earthquake
+      operationId: controller.get_earthquake
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EarthquakeBasic'
+
+  /earthquake/{province}:
+    parameters:
+    - name: province
+      in: path
+      required: true
+      description: Province name in Thai
+      schema:
+        type : string
+    get:
+      summary: Returns complete details of the specified province earthquake 
+      tags: 
+        - earthquake
+      operationId: controller.get_earthquake_details
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarthquakeDetail'
+
+components:
+  schemas:
+    EarthquakeBasic:
+      type: object
+      properties:
+        center:
+          type: string
+        magnitude:
+          type: number
+    EarthquakeDetail:
+      type: object
+      properties:
+        center:
+          type: string
+        magnitude:
+          type: number
+        date:
+          type: string
+        lat:
+          type: number
+        lon:
+          type: number
+        depth:
+          type: integer
+        phrase:
+          type: integer
