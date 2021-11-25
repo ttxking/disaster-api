@@ -81,6 +81,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LandslideBasic'
+  /landslide/ratio:
+    get:
+      summary: Returns a value of landslide risk village and earthquake in Thailand.
+      tags: 
+        - landslide
+      operationId: controller.get_landslide_and_earthquake_ratio
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandEarthQuakeRatio'
 
 components:
   schemas:
@@ -121,4 +134,13 @@ components:
         province:
           type: string
         risk-landslide-area:
+          type: integer
+    LandEarthQuakeRatio:
+      type: object
+      properties:
+        province:
+          type: string
+        number_of_earthquake:
+          type: integer
+        risk-landslide-village:
           type: integer
