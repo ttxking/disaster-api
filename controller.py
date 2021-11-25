@@ -35,6 +35,7 @@ def get_earthquake_details(province):
         result = [models.EarthquakeDetail(*row) for row in cs.fetchall()]
         return result
 
+
 def get_average_magnitude_and_phrase(province):
     pro = '%' + province + '%'
     province_format = 'จ.' + province
@@ -52,6 +53,7 @@ def get_average_magnitude_and_phrase(province):
             return models.EarthquakeAverage(*result)
         else:
             abort(404)
+
 
 def get_province_numbers_of_earthquakes(province):
     pro = '%' + province + '%'
@@ -122,6 +124,7 @@ def get_landslide_earthquake_ratio():
             list.append(result_json)
     return list
 
+
 def get_province_landslide_earthquake_ratio(province):
     pro = '%' + province + '%'
     province_format = 'จ.' + province
@@ -141,6 +144,7 @@ def get_province_landslide_earthquake_ratio(province):
         return models.LandslideEarthquakeRatio(*result)
     else:
         abort(404)
+
 
 def get_disaster():
     with db_cursor() as cs:
@@ -162,4 +166,29 @@ def get_disaster_details(month):
             WHERE month like %s
         """, [pro])
         result = [models.DisasterDetail(*row) for row in cs.fetchall()]
+        return result
+
+
+def get_survey():
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT province, section, encounted_disaster, common_disaster, dangerous_disaster, rain_duration,
+            rain_heaviness, rain_amount
+            FROM survey
+
+        """)
+        result = [models.SurveyBasic(*row) for row in cs.fetchall()]
+        return result
+
+
+def get_survey_details(province):
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+                SELECT  province, section, encounted_disaster, common_disaster, dangerous_disaster, rain_duration,
+                rain_heaviness, rain_amount
+                FROM survey
+                WHERE province like %s
+            """, [pro])
+        result = [models.SurveyDetail(*row) for row in cs.fetchall()]
         return result

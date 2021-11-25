@@ -190,6 +190,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LandslideEarthquakeRatio'
+  /survey:
+    get:
+      summary: Returns a list of survey risk disaster area in Thailand.
+      tags:
+        - survey
+      operationId: controller.get_survey
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyBasic'
+  /survey/{province}:
+    parameters:
+      - name: province
+        in: path
+        required: true
+        description: Province name in Thai
+        schema:
+          type: string
+    get:
+      summary: Returns complete details of the specified province survey.
+      tags:
+        - survey
+      operationId: controller.get_survey_details
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyDetail'
 
 components:
   schemas:
@@ -294,4 +327,35 @@ components:
           type: integer
         risk-landslide-village:
           type: integer
-    
+    SurveyBasic:
+      type: object
+      properties:
+        province:
+          type: string
+        section:
+          type: string
+        common_disaster:
+          type: string
+        dangerous_disaster:
+          type: string
+        rain_heaviness:
+          type: string
+    SurveyDetail:
+      type: object
+      properties:
+        province:
+          type: string
+        section:
+          type: string
+        encounted_disaster:
+          type: string
+        common_disaster:
+          type: string
+        dangerous_disaster:
+          type: string
+        rain_duration:
+          type: integer
+        rain_heaviness:
+          type: string
+        rain_amount:
+          type: integer
