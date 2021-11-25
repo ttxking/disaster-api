@@ -130,6 +130,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LandEarthQuakeRatio'
+  /landslide/{province}:
+    parameters:
+      - name: province
+        in: path
+        required: true
+        description: Province name in Thai
+        schema:
+          type: string
+    get:
+      summary: Returns complete details of the specified province landslide
+      tags:
+        - landslide
+      operationId: controller.get_landslide_details
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandslideDetail'
 
 components:
   schemas:
