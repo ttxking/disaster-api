@@ -85,7 +85,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EarthquakeDetail'
-
+  /earthquake/{province}/average:
+    parameters:
+    - name: province
+      in: path
+      required: true
+      description: Province name in Thai
+      schema:
+        type : string
+    get:
+      summary: Returns average magnitude and phrase of earthquake for the specified province 
+      tags: 
+        - earthquake
+      operationId: controller.get_average_magnitude_and_phrase
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarthquakeAverage'
+  /landslide:
+    get:
+      summary: Returns a list of landslide risk area in Thailand.
+      tags: 
+        - landslide
+      operationId: controller.get_landslide
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandslideBasic'
 components:
   schemas:
     DisasterBasic:
@@ -146,3 +178,17 @@ components:
           type: integer
         phrase:
           type: integer
+    EarthquakeAverage:
+      type: object
+      properties:
+        magnitude:
+          type: number
+        phrase:
+          type: number
+    LandslideBasic:
+      type: object
+      properties:
+        province:
+          type: string
+        risk-landslide-area:
+          type: integer 
