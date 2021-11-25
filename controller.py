@@ -6,11 +6,13 @@ from config import OPENAPI_AUTOGEN_DIR, DB_HOST, DB_USER, DB_PASSWD, DB_NAME
 sys.path.append(OPENAPI_AUTOGEN_DIR)
 from openapi_server import models
 
+
 def db_cursor():
     return mysql.connect(host=DB_HOST,
                          user=DB_USER,
                          passwd=DB_PASSWD,
                          db=DB_NAME).cursor()
+
 
 def get_earthquake():
     with db_cursor() as cs:
@@ -20,6 +22,7 @@ def get_earthquake():
         """)
         result = [models.EarthquakeBasic(*row) for row in cs.fetchall()]
         return result
+
 
 def get_earthquake_details(province):
     pro = '%' + province + '%'
@@ -31,6 +34,7 @@ def get_earthquake_details(province):
         """, [pro])
         result = [models.EarthquakeDetail(*row) for row in cs.fetchall()]
         return result
+
 
 def get_average_magnitude_and_phrase(province):
     pro = '%' + province + '%'
@@ -62,6 +66,7 @@ def get_average_magnitude_and_phrase(province):
 #         """, [province, pro])    
 #     return
 
+
 def get_landslide():
     with db_cursor() as cs:
         cs.execute("""
@@ -71,8 +76,18 @@ def get_landslide():
         result = [models.LandslideBasic(*row) for row in cs.fetchall()]
         return result
 
+
 def get_landslide_details(province):
-    pass
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+                SELECT  province, district, sub-district, risk-landslide-village, risk-landslide-area
+                FROM landslide
+                WHERE province like %s
+            """, [pro])
+        result = [models.LandslideDetail(*row) for row in cs.fetchall()]
+        return result
+
 
 def get_landslide_earthquake_ratio():
     list = []
@@ -104,21 +119,22 @@ def get_landslide_earthquake_ratio():
             list.append(result_json)
     return list
 
+
 def get_landslide_and_earthquake_ratio(province):
-    # pro = '%' + province + '%'
-    # with db_cursor() as cs:
-    #     cs.execute("""
-    #         SET @TestVariable := 'จ.'+ %s;
-    #         SELECT e.province, COUNT(*) as number_of_earthquake, `risk-landslide-village`
-    #         FROM
-    #         (SELECT  @TestVariable AS province, magnitude, date, lat, lon, depth, phrase
-    #         FROM earthquake 
-    #         WHERE center like %s) e
-    #         INNER JOIN landslide l
-    #         WHERE e.province = l.province
-    #         GROUP BY e.province, `risk-landslide-village`
-    #     """, [province, pro])    
-    pass
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+            SET @TestVariable := 'จ.'+ %s;
+            SELECT e.province, COUNT(*) as number_of_earthquake, `risk-landslide-village`
+            FROM
+            (SELECT  @TestVariable AS province, magnitude, date, lat, lon, depth, phrase
+            FROM earthquake 
+            WHERE center like %s) e
+            INNER JOIN landslide l
+            WHERE e.province = l.province
+            GROUP BY e.province, `risk-landslide-village`
+        """, [province, pro])
+
 
 def get_disaster():
     with db_cursor() as cs:
@@ -129,6 +145,7 @@ def get_disaster():
         """)
         result = [models.DisasterBasic(*row) for row in cs.fetchall()]
         return result
+
 
 def get_disaster_details(month):
     pro = '%' + month + '%'
