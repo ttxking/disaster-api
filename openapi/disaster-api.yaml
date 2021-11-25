@@ -12,6 +12,43 @@ info:
 servers:
   - url: /disaster-api
 paths:
+  /disaster:
+    get:
+      summary: Returns a list of natural disaster happening in Thailand
+      tags:
+        - disaster
+      operationId: controller.get_disaster
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DisasterBasic'
+  /disaster/{month}:
+    parameters:
+    - name: month
+      in: path
+      required: true
+      description: month name in Thai
+      schema:
+        type: string
+    get:
+      summary: Returns complete details of the specified month disaster
+      tags: 
+        - disaster
+      operationId: controller.get_disaster_details
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisasterDetail'
+      
+              
   /earthquake:
     get:
       summary: Returns a list of earthquake happening in Thailand.
@@ -27,7 +64,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EarthquakeBasic'
-
   /earthquake/{province}:
     parameters:
     - name: province
@@ -37,7 +73,7 @@ paths:
       schema:
         type : string
     get:
-      summary: Returns complete details of earthquake for the specified province 
+      summary: Returns complete details of the specified province earthquake 
       tags: 
         - earthquake
       operationId: controller.get_earthquake_details
@@ -97,6 +133,40 @@ paths:
 
 components:
   schemas:
+    DisasterBasic:
+      type: object
+      properties:
+        month:
+          type: string
+        north:
+          type: string
+        north-east:
+          type: string
+        central:
+          type: string
+        east: 
+          type: string
+        south-east:
+          type: string
+        south-west:
+          type: string
+    DisasterDetail:
+      type: object
+      properties:
+        month:
+          type: string
+        north:
+          type: string
+        north-east:
+          type: string
+        central:
+          type: string
+        east: 
+          type: string
+        south-east:
+          type: string
+        south-west:
+          type: string
     EarthquakeBasic:
       type: object
       properties:
@@ -144,3 +214,4 @@ components:
           type: integer
         risk-landslide-village:
           type: integer
+    

@@ -118,9 +118,25 @@ def get_landslide_and_earthquake_ratio(province):
     #         WHERE e.province = l.province
     #         GROUP BY e.province, `risk-landslide-village`
     #     """, [province, pro])    
+    pass
 
+def get_disaster():
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT month, north, `north-east`, central, east, `south-east`, `south-west`
+            FROM disaster
 
+        """)
+        result = [models.DisasterBasic(*row) for row in cs.fetchall()]
+        return result
 
-
-
-
+def get_disaster_details(month):
+    pro = '%' + month + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT  north, `north-east`, central, east, `south-east`, `south-west`
+            FROM disaster
+            WHERE month like %s
+        """, [pro])
+        result = [models.DisasterDetail(*row) for row in cs.fetchall()]
+        return result
