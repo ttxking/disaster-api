@@ -205,6 +205,19 @@ components:
           type: string
         risk-landslide-area:
           type: integer
+    LandslideDetail:
+      type: object
+      properties:
+        province:
+          type: string
+        district:
+          type: integer
+        sub-district:
+          type: integer
+        risk-landslide-village:
+          type: integer
+        risk-landslide-area:
+          type: integer
     LandEarthQuakeRatio:
       type: object
       properties:
