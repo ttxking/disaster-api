@@ -104,6 +104,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EarthquakeAverage'
+  /earthquake/{province}/numOfEarthquakes:
+    parameters:
+    - name: province
+      in: path
+      required: true
+      description: Province name in Thai
+      schema:
+        type : string
+    get:
+      summary: Returns the number of earthquake occuring on the specified province 
+      tags: 
+        - earthquake
+      operationId: controller.get_province_numbers_of_earthquakes
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarthquakeNumber'
   /landslide:
     get:
       summary: Returns a list of landslide risk area in Thailand.
@@ -117,19 +137,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LandslideBasic'
-  /landslide/ratio:
-    get:
-      summary: Returns a value of landslide risk village and earthquake in Thailand.
-      tags: 
-        - landslide
-      operationId: controller.get_landslide_and_earthquake_ratio
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LandEarthQuakeRatio'
   /landslide/{province}:
     parameters:
       - name: province
@@ -139,7 +146,7 @@ paths:
         schema:
           type: string
     get:
-      summary: Returns complete details of the specified province landslide
+      summary: Returns complete details of the specified province landslide.
       tags:
         - landslide
       operationId: controller.get_landslide_details
@@ -150,6 +157,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LandslideDetail'
+  /landslide/ratio:
+    get:
+      summary: Returns a value of landslide risk village and earthquake in Thailand.
+      tags: 
+        - landslide
+      operationId: controller.get_landslide_earthquake_ratio
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandslideEarthquakeRatio'
+  /landslide/{province}/ratio:
+    parameters:
+    - name: province
+      in: path
+      required: true
+      description: Province name in Thai
+      schema:
+        type : string
+    get:
+      summary: Returns a value of landslide risk village and earthquake of specific province.
+      tags: 
+        - landslide
+      operationId: controller.get_province_landslide_earthquake_ratio
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandslideEarthquakeRatio'
 
 components:
   schemas:
@@ -214,10 +254,17 @@ components:
     EarthquakeAverage:
       type: object
       properties:
+        province: 
+          type: string
         magnitude:
           type: number
         phrase:
           type: number
+    EarthquakeNumber:
+      type: object
+      properties:
+        number_of_earthquake: 
+          type: integer
     LandslideBasic:
       type: object
       properties:
@@ -238,7 +285,7 @@ components:
           type: integer
         risk-landslide-area:
           type: integer
-    LandEarthQuakeRatio:
+    LandslideEarthquakeRatio:
       type: object
       properties:
         province:

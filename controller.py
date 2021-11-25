@@ -35,36 +35,39 @@ def get_earthquake_details(province):
         result = [models.EarthquakeDetail(*row) for row in cs.fetchall()]
         return result
 
-
 def get_average_magnitude_and_phrase(province):
     pro = '%' + province + '%'
+    province_format = 'จ.' + province
     with db_cursor() as cs:
         cs.execute("""
-            SET @TestVariable := 'จ.'+ %s;
-            SELECT @TestVariable AS province, ROUND(AVG(magnitude),2) average_magnitude, ROUND(AVG(phrase),2) average_phrase
+            SELECT province, ROUND(AVG(magnitude),2) average_magnitude, ROUND(AVG(phrase),2) average_phrase
             FROM(
-            SELECT  center, magnitude, date, lat, lon, depth, phrase
+            SELECT @TestVariable:=%s AS province, center, magnitude, date, lat, lon, depth, phrase
             FROM earthquake
             WHERE center like %s) eq
-        """, [province, pro])
+            GROUP BY province
+        """, [province_format, pro])
         result = cs.fetchone()
         if result:
             return models.EarthquakeAverage(*result)
         else:
             abort(404)
 
-# def get_province_numbers_of_earthquakes(province):
-#     pro = '%' + province + '%'
-#     with db_cursor() as cs:
-#         cs.execute("""
-#             SET @TestVariable := 'จ.'+ %s;
-#             SELECT province, COUNT(*) as number_of_earthquake
-#             FROM
-#             (SELECT  @TestVariable AS province, magnitude, date, lat, lon, depth, phrase
-#             FROM earthquake 
-#             WHERE center like %s) pro_eq
-#         """, [province, pro])    
-#     return
+def get_province_numbers_of_earthquakes(province):
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT COUNT(*) as number_of_earthquake
+            FROM
+            (SELECT  magnitude, date, lat, lon, depth, phrase
+            FROM earthquake 
+            WHERE center like %s) pro_eq
+        """, [pro])    
+        result = cs.fetchone()
+        if result:
+            return models.EarthquakeNumber(*result)
+        else:
+            abort(404)
 
 
 def get_landslide():
@@ -119,22 +122,25 @@ def get_landslide_earthquake_ratio():
             list.append(result_json)
     return list
 
-
-def get_landslide_and_earthquake_ratio(province):
+def get_province_landslide_earthquake_ratio(province):
     pro = '%' + province + '%'
+    province_format = 'จ.' + province
     with db_cursor() as cs:
         cs.execute("""
-            SET @TestVariable := 'จ.'+ %s;
             SELECT e.province, COUNT(*) as number_of_earthquake, `risk-landslide-village`
             FROM
-            (SELECT  @TestVariable AS province, magnitude, date, lat, lon, depth, phrase
+            (SELECT @TestVariable := %s AS province, magnitude, date, lat, lon, depth, phrase
             FROM earthquake 
             WHERE center like %s) e
             INNER JOIN landslide l
             WHERE e.province = l.province
             GROUP BY e.province, `risk-landslide-village`
-        """, [province, pro])
-
+        """, [province_format, pro])  
+    result = cs.fetchone()
+    if result:
+        return models.LandslideEarthquakeRatio(*result)
+    else:
+        abort(404)
 
 def get_disaster():
     with db_cursor() as cs:
