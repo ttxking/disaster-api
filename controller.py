@@ -81,7 +81,7 @@ def get_landslide_details(province):
     pro = '%' + province + '%'
     with db_cursor() as cs:
         cs.execute("""
-                SELECT  province, district, sub-district, risk-landslide-village, risk-landslide-area
+                SELECT  province, district, `sub-district`, `risk-landslide-village`, `risk-landslide-area`
                 FROM landslide
                 WHERE province like %s
             """, [pro])
