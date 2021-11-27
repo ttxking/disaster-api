@@ -46,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DisasterDetail'
+                $ref: '#/components/schemas/DisasterBasic'
       
               
   /earthquake:
@@ -231,34 +231,9 @@ components:
       properties:
         month:
           type: string
-        north:
+        section:
           type: string
-        north-east:
-          type: string
-        central:
-          type: string
-        east: 
-          type: string
-        south-east:
-          type: string
-        south-west:
-          type: string
-    DisasterDetail:
-      type: object
-      properties:
-        month:
-          type: string
-        north:
-          type: string
-        north-east:
-          type: string
-        central:
-          type: string
-        east: 
-          type: string
-        south-east:
-          type: string
-        south-west:
+        disaster:
           type: string
     EarthquakeBasic:
       type: object

@@ -149,7 +149,7 @@ def get_province_landslide_earthquake_ratio(province):
 def get_disaster():
     with db_cursor() as cs:
         cs.execute("""
-            SELECT month, north, `north-east`, central, east, `south-east`, `south-west`
+            SELECT month, section, disaster
             FROM disaster
 
         """)
@@ -161,11 +161,11 @@ def get_disaster_details(month):
     pro = '%' + month + '%'
     with db_cursor() as cs:
         cs.execute("""
-            SELECT  north, `north-east`, central, east, `south-east`, `south-west`
+            SELECT  section, disaster
             FROM disaster
             WHERE month like %s
         """, [pro])
-        result = [models.DisasterDetail(*row) for row in cs.fetchall()]
+        result = [models.DisasterBasic(*row) for row in cs.fetchall()]
         return result
 
 
@@ -192,3 +192,5 @@ def get_survey_details(province):
             """, [pro])
         result = [models.SurveyDetail(*row) for row in cs.fetchall()]
         return result
+
+

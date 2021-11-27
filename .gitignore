@@ -10,3 +10,4 @@ config.py
 env/
 autogen/
 *-sol.*
+.idea
