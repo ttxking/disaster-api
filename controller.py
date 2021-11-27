@@ -64,7 +64,7 @@ def get_province_numbers_of_earthquakes(province):
             (SELECT  magnitude, date, lat, lon, depth, phrase
             FROM earthquake 
             WHERE center like %s) pro_eq
-        """, [pro])    
+        """, [pro])
         result = cs.fetchone()
         if result:
             return models.EarthquakeNumber(*result)
@@ -96,11 +96,17 @@ def get_landslide_details(province):
 
 def get_landslide_earthquake_ratio():
     list = []
-    landslide_province = ['จ.เชียงใหม่', 'จ.ตาก', 'จ.แม่ฮ่องสอน', 'จ.น่าน', 'จ.กาญจนบุรี', 'จ.เชียงราย', 'จ.ลำปาง', 'จ.สุราษฎร์ธานี', 'จ.เลย', 'จ.เพชรบูรณ์', 'จ.อุตรดิตถ์',
-                        'จ.แพร่', 'จ.ยะลา', 'จ.เพชรบุรี', 'จ.พิษณุโลก', 'จ.อุทัยธานี', 'จ.ชัยภูมิ', 'จ.นครราชสีมา', 'จ.ประจวบคีรีขันธ์', 'จ.พะเยา', 'จ.นครศรีธรรมราช', 'จ.ชุมพร'
-                        'จ.ระนอง', 'จ.พังงา', 'จ.ลำพูน', 'จ.สงขลา', 'จ.นราธิวาส', 'จ.จันทบุรี', 'จ.กำแพงเพชร', 'จ.สุโขทัย', 'จ.ราชบุรี', 'จ.ตรัง', 'จ.ปราจีนบุรี', 'จ.สตูล', 
-                        'จ.อุบลราชธานี', 'จ.กระบี่', 'จ.สระแก้ว', 'จ.พัทลุง', 'จ.อุดรธานี', 'จ.ศรีสะเกษ', 'จ.ขอนแก่น', 'จ.นครสวรรค์', 'จ.นครนายก', 'จ.สระบุรี', 'จ.ตราด', 'จ.ระยอง', 
-                        'จ.สุพรรณบุรี', 'จ.ชลบุรี', 'จ.ลพบุรี', 'จ.หนองบัวลำภู', 'จ.หนองคาย', 'จ.ภูเก็ต', 'จ.ฉะเชิงเทรา', 'จ.ปัตตานี']
+    landslide_province = ['จ.เชียงใหม่', 'จ.ตาก', 'จ.แม่ฮ่องสอน', 'จ.น่าน', 'จ.กาญจนบุรี', 'จ.เชียงราย', 'จ.ลำปาง',
+                          'จ.สุราษฎร์ธานี', 'จ.เลย', 'จ.เพชรบูรณ์', 'จ.อุตรดิตถ์',
+                          'จ.แพร่', 'จ.ยะลา', 'จ.เพชรบุรี', 'จ.พิษณุโลก', 'จ.อุทัยธานี', 'จ.ชัยภูมิ', 'จ.นครราชสีมา',
+                          'จ.ประจวบคีรีขันธ์', 'จ.พะเยา', 'จ.นครศรีธรรมราช', 'จ.ชุมพร'
+                                                                             'จ.ระนอง', 'จ.พังงา', 'จ.ลำพูน', 'จ.สงขลา',
+                          'จ.นราธิวาส', 'จ.จันทบุรี', 'จ.กำแพงเพชร', 'จ.สุโขทัย', 'จ.ราชบุรี', 'จ.ตรัง', 'จ.ปราจีนบุรี',
+                          'จ.สตูล',
+                          'จ.อุบลราชธานี', 'จ.กระบี่', 'จ.สระแก้ว', 'จ.พัทลุง', 'จ.อุดรธานี', 'จ.ศรีสะเกษ', 'จ.ขอนแก่น',
+                          'จ.นครสวรรค์', 'จ.นครนายก', 'จ.สระบุรี', 'จ.ตราด', 'จ.ระยอง',
+                          'จ.สุพรรณบุรี', 'จ.ชลบุรี', 'จ.ลพบุรี', 'จ.หนองบัวลำภู', 'จ.หนองคาย', 'จ.ภูเก็ต',
+                          'จ.ฉะเชิงเทรา', 'จ.ปัตตานี']
     for i in range(len(landslide_province)):
         pro = '%' + landslide_province[i] + '%'
         with db_cursor() as cs:
@@ -113,7 +119,7 @@ def get_landslide_earthquake_ratio():
                 INNER JOIN landslide l
                 WHERE e.province = l.province
                 GROUP BY e.province, `risk-landslide-village`
-            """, [landslide_province[i],pro])  
+            """, [landslide_province[i], pro])
         result = cs.fetchone()
         if result:
             result_json = {
@@ -138,7 +144,7 @@ def get_province_landslide_earthquake_ratio(province):
             INNER JOIN landslide l
             WHERE e.province = l.province
             GROUP BY e.province, `risk-landslide-village`
-        """, [province_format, pro])  
+        """, [province_format, pro])
     result = cs.fetchone()
     if result:
         return models.LandslideEarthquakeRatio(*result)
@@ -172,10 +178,8 @@ def get_disaster_details(month):
 def get_survey():
     with db_cursor() as cs:
         cs.execute("""
-            SELECT province, section, encounted_disaster, common_disaster, dangerous_disaster, rain_duration,
-            rain_heaviness, rain_amount
+            SELECT province, section,common_disaster, dangerous_disaster, rain_heaviness
             FROM survey
-
         """)
         result = [models.SurveyBasic(*row) for row in cs.fetchall()]
         return result
@@ -194,3 +198,37 @@ def get_survey_details(province):
         return result
 
 
+def get_average_survey_rain(province):
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+                SELECT province, ROUND(AVG(rain_duration),2) average_rain_duration, ROUND(AVG(rain_amount),2) average_rain_amount_per_month
+                FROM survey
+                WHERE province like %s
+                GROUP BY province
+            """, [pro])
+        result = cs.fetchone()
+        if result:
+            return models.SurveyRainAverage(*result)
+        else:
+            abort(404)
+
+
+def get_survey_disaster(province):
+    pro = '%' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+            SELECT s.province, s.section, month , disaster, s.common_disaster common_disaster_by_survey, 
+            s.dangerous_disaster dangerous_disaster_by_survey
+            FROM 
+            (SELECT  @TestVariable:=%s AS province, section , common_disaster, dangerous_disaster 
+            FROM survey
+            WHERE province like %s) s
+            INNER JOIN disaster d
+            WHERE d.section = s.section
+            """, [pro, pro])
+        result = cs.fetchone()
+        if result:
+            return models.SurveyDisaster(*result)
+        else:
+            abort(404)

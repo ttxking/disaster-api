@@ -179,7 +179,7 @@ paths:
       schema:
         type : string
     get:
-      summary: Returns a value of landslide risk village and earthquake of specific province.
+      summary: Returns a value of landslide risk village and earthquake of specified province.
       tags: 
         - landslide
       operationId: controller.get_province_landslide_earthquake_ratio
@@ -223,6 +223,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SurveyDetail'
+  /survey/{province}/average:
+    parameters:
+      - name: province
+        in: path
+        required: true
+        description: Province name in Thai
+        schema:
+          type: string
+    get:
+      summary: Returns average rain duration and rain amount for the specified province
+      tags:
+        - survey
+      operationId: controller.get_average_survey_rain
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyRainAverage'
 
 components:
   schemas:
@@ -264,9 +284,9 @@ components:
       properties:
         province: 
           type: string
-        magnitude:
+        average_magnitude:
           type: number
-        phrase:
+        average_phrase:
           type: number
     EarthquakeNumber:
       type: object
@@ -333,4 +353,13 @@ components:
         rain_heaviness:
           type: string
         rain_amount:
+          type: integer
+    SurveyRainAverage:
+      type: object
+      properties:
+        province:
+          type: string
+        average_rain_duration:
+          type: integer
+        average_rain_amount:
           type: integer
