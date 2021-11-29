@@ -178,10 +178,11 @@ def get_disaster_details(month):
 def get_survey():
     with db_cursor() as cs:
         cs.execute("""
-            SELECT province, section,common_disaster, dangerous_disaster, rain_heaviness
+            SELECT  province, section, encounted_disaster, common_disaster, dangerous_disaster, rain_duration,
+                rain_heaviness, rain_amount
             FROM survey
         """)
-        result = [models.SurveyBasic(*row) for row in cs.fetchall()]
+        result = [models.Surveys(*row) for row in cs.fetchall()]
         return result
 
 
@@ -194,7 +195,7 @@ def get_survey_details(province):
                 FROM survey
                 WHERE province like %s
             """, [pro])
-        result = [models.SurveyDetail(*row) for row in cs.fetchall()]
+        result = [models.Surveys(*row) for row in cs.fetchall()]
         return result
 
 
@@ -207,11 +208,8 @@ def get_average_survey_rain(province):
                 WHERE province like %s
                 GROUP BY province
             """, [pro])
-        result = cs.fetchone()
-        if result:
-            return models.SurveyRainAverage(*result)
-        else:
-            abort(404)
+        result = [models.SurveyRainAverage(*row) for row in cs.fetchall()]
+        return result
 
 
 def get_survey_disaster(province):

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Average Monthly Rainfalls</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<body>
+  <div id="chart" style="width:100%;height:75vh;"></div>
+  <script>
+    async function createChart() {
+      var resp = await fetch('http://localhost:3000/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `{
+                survey{
+                    province
+                    avgMonthlyRainfalls {
+                        province
+                        averageRainAmount
+                        averageRainDuration
+                     }
+                }
+          }`
+        })
+      });
+      var json = await resp.json();
+      var table = json.data;
+      var data = [];
+
+      for (let i=0; i<table.survey.length; i++ ) {
+          var check = 0;
+          for (let j=0; j<data.length; j++ ) {
+              if (data[j].name === table.survey[i].province) {
+                  check+=1;
+                  break;
+              }
+          }
+          if (check===0){
+                data.push({
+                    x: table.survey[i].avgMonthlyRainfalls.map(row => row.averageRainDuration),
+                    y: table.survey[i].avgMonthlyRainfalls.map(row => row.averageRainAmount),
+                    type: 'scatter',
+                    name: table.survey[i].province
+                });
+          }
+      }
+
+      var layout = {
+        title: 'Average Monthly Rainfalls for survey',
+        xaxis: {
+          title: 'Average Monthly Rainfall Duration (hour)',
+            range: [0,5]
+        },
+        yaxis: {
+          title: 'Average Monthly Rainfall (times)',
+          range: [0,10]
+        }
+      };
+      var config = { responsive: true };
+      Plotly.newPlot("chart", data, layout, config);
+    }
+    createChart();
+  </script>
+</body>
+</html>
