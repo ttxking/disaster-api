@@ -172,7 +172,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LandslideEarthquakeRatio'
+                type: array
+                items:
+                  $ref: '#/components/schemas/LandslideEarthquakeRatio'
   /landslide/{province}/ratio:
     parameters:
     - name: province
