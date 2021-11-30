@@ -212,21 +212,4 @@ def get_average_survey_rain(province):
         return result
 
 
-def get_survey_disaster(province):
-    pro = '%' + province + '%'
-    with db_cursor() as cs:
-        cs.execute("""
-            SELECT s.province, s.section, month , disaster, s.common_disaster common_disaster_by_survey, 
-            s.dangerous_disaster dangerous_disaster_by_survey
-            FROM 
-            (SELECT  @TestVariable:=%s AS province, section , common_disaster, dangerous_disaster 
-            FROM survey
-            WHERE province like %s) s
-            INNER JOIN disaster d
-            WHERE d.section = s.section
-            """, [pro, pro])
-        result = cs.fetchone()
-        if result:
-            return models.SurveyDisaster(*result)
-        else:
-            abort(404)
+
