@@ -25,17 +25,14 @@
         })
       });
       var json = await resp.json();
-      var table = json.data.landslideRatio;
+      var table = json.data;
 
-      var data = [];
-      table.forEach(element => {
-          data.push({
-              x: element.map(row => row.numberOfEarthquake),
-              y: element.map(row => row.riskLandslideVillage),
-              type: 'line',
-              name: element.province,
-          });
-      });
+      var data = table.landslideRatio.map(obj=>({
+          x: [obj.numberOfEarthquake],
+          y: [obj.riskLandslideVillage],
+          type: 'scatter',
+          name: obj.province
+      }));
 
       console.log(data);
       var layout = {
