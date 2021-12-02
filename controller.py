@@ -167,7 +167,7 @@ def get_disaster_details(month):
     pro = '%' + month + '%'
     with db_cursor() as cs:
         cs.execute("""
-            SELECT  section, disaster
+            SELECT  month,section, disaster
             FROM disaster
             WHERE month like %s
         """, [pro])
