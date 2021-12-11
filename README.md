@@ -116,7 +116,7 @@ This API provides information about common natural disaster happening in Thailan
    openapi-to-graphql --cors -u http://localhost:8080/disaster-api openapi/disaster-api.yaml
    ```
    -  GraphQL window avalible on http://localhost:3000/graphql
-5. Open the index page in `html\index.html`
+5. Open the index page in `http://localhost:8080`
 
 ## Interact with our database
 1. Your can just download openapi-to-graphql and run with this command
@@ -127,7 +127,7 @@ This API provides information about common natural disaster happening in Thailan
 
 But the query it quite slow, you need to wait for 15-30 second
 
-2. Open the index page in `html\index.html`
+2. Open the index page in `templates\index.html`
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributor 
