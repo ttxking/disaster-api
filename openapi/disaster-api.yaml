@@ -284,7 +284,7 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/SurveyRainLand'
-  /survey/{heaviness}/:
+  /survey/{heaviness}:
       parameters:
         - name: heaviness
           in: path
