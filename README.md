@@ -90,7 +90,7 @@ This API provides information about common natural disaster happening in Thailan
    ```sh
    npm install -g openapi-to-graphql-cli@2.5.0
    ```
-5. Edit `example.env` for your credential
+5. Edit `config.py` for your phpMyAdmin database
    ```
    OPENAPI_AUTOGEN_DIR="autogen"
    DB_HOST="Your database host"
