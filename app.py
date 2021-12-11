@@ -1,5 +1,6 @@
 import sys
 import os
+from flask import render_template
 
 if not os.path.exists("config.py"):
     print("Configuration 'config.py' not found.  "
@@ -31,15 +32,23 @@ except ModuleNotFoundError:
 
 from openapi_server import encoder
 
-def main():
-    app = connexion.App(__name__, specification_dir='./openapi/')
-    app.app.json_encoder = encoder.JSONEncoder
-    app.add_api('disaster-api.yaml',
-                arguments={'title': 'Thailand Disaster API'},
-                pythonic_params=True)
+app = connexion.App(__name__, specification_dir='./openapi/')
+app.app.json_encoder = encoder.JSONEncoder
+app.add_api('disaster-api.yaml',
+            arguments={'title': 'Thailand Disaster API'},
+            pythonic_params=True)
 
-    app.run(port=8080, debug=True)
+@app.route('/')
+def home():
+    return render_template('index.html')
 
+@app.route('/rain-avg', methods=['GET'])
+def rain_avg():
+    return render_template('rain-avg.html')
+
+@app.route('/landslide', methods=['GET'])
+def landslide_ratio():
+    return render_template('landslide.html')
 
 if __name__ == '__main__':
-    main()
+    app.run()

@@ -6,8 +6,6 @@ tmp
 .coverage
 htmlcov/*
 *.swp
-config.py
 env/
-autogen/
 *-sol.*
 .idea
