@@ -223,3 +223,18 @@ def get_survey_rain_landslide(province):
             """, [pro])
         result = [models.SurveyRainLand(*row) for row in cs.fetchall()]
         return result
+
+def get_flood_province_to_rain_heaviness(heaviness):
+    flood = '%อุทกภัย%'
+    h = '%' + heaviness + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+                SELECT distinct s.province
+                FROM survey s
+                WHERE s.rain_heaviness like %s AND s.section IN(
+                SELECT d.section
+                FROM disaster d
+                WHERE d.disaster like %s) 
+            """, [h, flood])
+        result = [models.FloodProvinceToRainHeaviness(*row) for row in cs.fetchall()]
+        return result

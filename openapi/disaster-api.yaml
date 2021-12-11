@@ -284,6 +284,28 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/SurveyRainLand'
+  /survey/{heaviness}/:
+      parameters:
+        - name: heaviness
+          in: path
+          required: true
+          description: Rain heaviness (soft, medium, heavy, very heavy) you want to check
+          schema:
+            type: string
+      get:
+        summary: Returns province that actually have flood as disaster according to their rain heaviness
+        tags:
+          - survey
+        operationId: controller.get_flood_province_to_rain_heaviness
+        responses:
+          200:
+            description: Success
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/FloodProvinceToRainHeaviness'
 components:
   schemas:
     DisasterBasic:
@@ -401,3 +423,8 @@ components:
           type: number
         risk-landslide-village:
           type: integer
+    FloodProvinceToRainHeaviness:
+      type: object
+      properties:
+        province:
+          type: string
