@@ -4,11 +4,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Disaster in Thailand API
-This API provides information about common natural disaster happening in Thailand. It's sperated into 4 categories:
+This API provides information about common natural disaster happening in Thailand. It's separated into 4 categories:
 
-- Overall monthly natural disaster in each region of Thailand. Raw data provided by Thai Meteorogical DepartMent (TMD).
-- Earthquake data in Thailand between 2011 and 2021. Raw data provided by Eathquake Observation Division.
-- Landslide risks area in Thailand. Raw data provided by Departmet of Mineral Resources (DMR).
+- Overall monthly natural disaster in each region of Thailand. Raw data provided by Thai Meteorological DepartMent (TMD).
+- Earthquake data in Thailand between 2011 and 2021. Raw data provided by Earthquake Observation Division.
+- Landslide risks area in Thailand. Raw data provided by Department of Mineral Resources (DMR).
 - Rainfall and storm data gathered by our group in Google form.
 ### API features
 1. disaster
@@ -102,17 +102,21 @@ This API provides information about common natural disaster happening in Thailan
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Usage
-1. Start the REST API server
+1. Run jar file 
+   ```sh
+   java -jar openapi-generator-cli-5.3.0.jar generate -i openapi/disaster-api.yaml -o autogen -g python-flask
+   ```
+3. Start the REST API server
    ```sh
    python app.py
    ```
    - swagger tool avalible on http://localhost:8080/disaster-api
-2. Start openapi-to-graphql in another terminal
+4. Start openapi-to-graphql in another terminal
    ```sh
    openapi-to-graphql --cors -u http://localhost:8080/disaster-api openapi/disaster-api.yaml
    ```
    -  GraphQL window avalible on http://localhost:3000/graphql
-3. Open the index page in `html\index.html`
+5. Open the index page in `html\index.html`
 
 ## Interact with our database
 1. Your can just download openapi-to-graphql and run with this command

@@ -4,9 +4,9 @@ info:
   description: |
     This API provides information about common natural disaster happening in Thailand. 
     It's sperated into 4 categories:
-    * Overall monthly natural disaster in each region of Thailand. Raw data provided by Thai Meteorogical DepartMent (TMD).
-    * Earthquake data in Thailand between 2011 and 2021. Raw data provided by Eathquake Observation Division.
-    * Landslide risks area in Thailand. Raw data provided by Departmet of Mineral Resources (DMR).
+    * Overall monthly natural disaster in each region of Thailand. Raw data provided by Thai Meteorological DepartMent (TMD).
+    * Earthquake data in Thailand between 2011 and 2021. Raw data provided by Earthquake Observation Division.
+    * Landslide risks area in Thailand. Raw data provided by Department of Mineral Resources (DMR).
     * Rainfall and storm data gathered by our group in Google form.
   version: 3.0.0
 servers:
