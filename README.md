@@ -18,7 +18,7 @@ This API provides information about common natural disaster happening in Thailan
 3. landslide
 <br><img width="842" alt="Screen Shot 2564-12-11 at 23 28 23" src="https://user-images.githubusercontent.com/55922403/145684109-00d53bd7-b808-4708-8d99-2dcf6ef05e9b.png">
 4. survey
-<br><img width="839" alt="Screen Shot 2564-12-12 at 00 12 06" src="https://user-images.githubusercontent.com/55922403/145685444-2ea4a3fc-4ea4-4cfc-9111-2f24d329f156.png">
+<br><img width="865" alt="Screen Shot 2564-12-12 at 00 38 59" src="https://user-images.githubusercontent.com/55922403/145686221-d0905d35-6bbb-4b6e-bc6d-3965685d097c.png">
 ### Data visualization features
 1. Earthquake count by magnitude
     > This graph provides the number of earthquake occur compare with the range of earthquake magnitude 
