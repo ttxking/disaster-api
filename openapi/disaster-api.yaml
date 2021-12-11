@@ -262,7 +262,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SurveyRainAverage'
-
+  /survey/{province}/landslide:
+      parameters:
+        - name: province
+          in: path
+          required: true
+          description: Province name in Thai
+          schema:
+            type: string
+      get:
+        summary: Returns rain from survey and risk landslide village for the specified province
+        tags:
+          - survey
+        operationId: controller.get_survey_rain_landslide
+        responses:
+          200:
+            description: Success
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SurveyRainLand'
 components:
   schemas:
     DisasterBasic:
@@ -369,3 +390,14 @@ components:
           type: number
         average_rain_amount:
           type: number
+    SurveyRainLand:
+      type: object
+      properties:
+        province:
+          type: string
+        average_rain_duration:
+          type: number
+        average_rain_amount:
+          type: number
+        risk-landslide-village:
+          type: integer

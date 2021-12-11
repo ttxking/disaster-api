@@ -212,4 +212,14 @@ def get_average_survey_rain(province):
         return result
 
 
-
+def get_survey_rain_landslide(province):
+    pro = '%จ.' + province + '%'
+    with db_cursor() as cs:
+        cs.execute("""
+                SELECT s.province, s.rain_duration, s.rain_amount, l.`risk-landslide-village`
+                FROM survey s
+                INNER JOIN landslide l
+                WHERE s.province = l.province and s.province like %s
+            """, [pro])
+        result = [models.SurveyRainLand(*row) for row in cs.fetchall()]
+        return result
