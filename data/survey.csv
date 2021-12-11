@@ -1,0 +1,41 @@
+province,section,encounted_disaster,common_disaster,dangerous_disaster,rain_duration,rain_heaviness,rain_amount
+จ.เชียงใหม่,north ,Yes,"Rain strom , Landslide , Drought ",Landslide ,5,Heavy,3
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Rain strom ,4,Medium,6
+จ.ตรัง,south-east ,Yes,"Earthquake , Drought , Flood ",Flood ,2,Medium,2
+จ.ขอนแก่น,north-east ,Yes,"Rain strom , Fire disaster , Drought , Flood ",Drought ,3,Heavy,4
+จ.น่าน,north ,Yes,"Rain strom , Landslide , Earthquake , Fire disaster , Drought ",Landslide ,6,Heavy,6
+จ.กรุงเทพ,central ,Yes,Flood ,Flood ,4,Heavy,5
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Rain strom ,3,Very heavy,6
+จ.ชลบุรี,east ,Yes,"Landslide , Fire disaster ",Fire disaster ,2,Soft,2
+จ.ศรีสะเกษ,south-east ,Yes,"Rain strom , Landslide , Drought , Flood ",Rain strom ,4,Very heavy,5
+จ.กระบี่,south-east ,Yes,"Rain strom , Landslide , Flood ",Rain strom ,4,Medium,6
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Flood ,3,Heavy,4
+จ.กรุงเทพ,central ,Yes,Flood ,Flood ,3,Medium,4
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Rain strom ,3,Heavy,5
+จ.กรุงเทพ,central ,Yes,Flood ,Flood ,4,Heavy,5
+จ.เชียงใหม่,north ,Yes,"Landslide , Earthquake , Fire disaster ",Landslide ,3,Medium,3
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Flood ,3,Medium,4
+จ.กรุงเทพ,central ,Yes,Flood ,Flood ,4,Heavy,5
+จ.กรุงเทพ,central ,Yes,Flood ,Flood ,4,Very heavy,3
+จ.บุรีรัมย์,north-east ,Yes,"Rain strom , Landslide , Drought ",Drought ,2,Medium,4
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Flood ,1,Medium,4
+จ.นครศรีธรรมราช,south-east ,Yes,"Rain strom , Landslide ",Rain strom ,3,Very heavy,3
+จ.ปราจีนบุรี,east ,Yes,"Rain strom , Flood ",Flood ,3,Very heavy,4
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Flood ,2,Heavy,3
+จ.ชลบุรี,east ,Yes,"Landslide , Fire disaster , Drought ",Landslide ,2,Heavy,2
+จ.สุรินทร์,north-east ,Yes,"Rain strom , Fire disaster , Drought , Flood ",Drought ,3,Heavy,2
+จ.กรุงเทพ,central ,Yes,"Rain strom , Flood ",Flood ,4,Heavy,5
+จ.เชียงราย,north ,Yes,"Landslide , Earthquake ",Earthquake ,1,Soft,1
+จ.ภูเก็ต,south-east ,Yes,"Rain strom , Fire disaster ",Rain strom ,4,Heavy,4
+จ.กรุงเทพ,central ,Yes,Flood ,Flood ,3,Very heavy,2
+จ.ขอนแก่น,east ,Yes,"Rain strom , Landslide , Drought , Flood ",Drought ,3,Heavy,4
+จ.ชลบุรี,east ,Yes,"Rain strom , Flood ",Flood ,2,Medium,3
+จ.ภูเก็ต,south-east ,Yes,"Rain strom , Landslide , Flood ",Rain strom ,3,Very heavy,4
+จ.ปราจีนบุรี,east ,Yes,"Rain strom , Landslide , Drought , Flood ",Flood ,4,Heavy,5
+จ.ศรีสะเกษ,north-east ,Yes,"Rain strom , Landslide , Drought ",Drought ,1,Medium,1
+จ.ระยอง,east ,Yes,"Rain strom , Flood ",Rain strom ,3,Heavy,4
+จ.สตูล,south-east ,Yes,"Rain strom , Flood ",Rain strom ,3,Heavy,4
+จ.ระยอง,east ,Yes,"Rain strom , Flood ",Rain strom ,4,Heavy,3
+จ.ปราจีนบุรี,east ,Yes,"Rain strom , Landslide , Drought , Flood ",Flood ,3,Heavy,2
+จ.จันทบุรี,east ,Yes,"Rain strom , Flood ",Rain strom ,3,Heavy,2
+จ.น่าน,north ,Yes,"Landslide , Earthquake , Drought ",Earthquake ,1,Soft,1

@@ -38,17 +38,26 @@ app.add_api('disaster-api.yaml',
             arguments={'title': 'Thailand Disaster API'},
             pythonic_params=True)
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
 
 @app.route('/rain-avg', methods=['GET'])
 def rain_avg():
     return render_template('rain-avg.html')
 
+
 @app.route('/landslide', methods=['GET'])
 def landslide_ratio():
     return render_template('landslide.html')
+
+
+@app.route('/earthquake', methods=['GET'])
+def earthquake():
+    return render_template('earthquake.html')
+
 
 if __name__ == '__main__':
     app.run()
