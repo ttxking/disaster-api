@@ -110,7 +110,7 @@ This API provides information about common natural disaster happening in Thailan
    ```sh
    python app.py
    ```
-   - swagger tool avalible on http://localhost:8080/disaster-api
+   - swagger tool avalible on http://localhost:8080/disaster-api/ui
 4. Start openapi-to-graphql in another terminal
    ```sh
    openapi-to-graphql --cors -u http://localhost:8080/disaster-api openapi/disaster-api.yaml
