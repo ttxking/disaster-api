@@ -10,7 +10,15 @@ This API provides information about common natural disaster happening in Thailan
 - Earthquake data in Thailand between 2011 and 2021. Raw data provided by Earthquake Observation Division.
 - Landslide risks area in Thailand. Raw data provided by Department of Mineral Resources (DMR).
 - Rainfall and storm data gathered by our group in Google form.
-### API features
+## Overview
+Thailand is one of the country that face many natural disasters. However, these data concerning the topic is not-well format, hard to access, and sparse.
+Many natural disaster such as landslide, earthquake, fire are neglected.
+That’s why we come up of a way to collect those datas in the form of API, for easy usage and access 
+## Overall Architect
+
+<img width="876" alt="Screen Shot 2564-12-12 at 21 10 32" src="https://user-images.githubusercontent.com/55922403/145715860-0445a19e-70b4-4c55-9a44-53f24d819082.png">
+
+## API features
 1. disaster
 <br><img width="618" alt="Screen Shot 2564-12-11 at 23 23 25" src="https://user-images.githubusercontent.com/55922403/145683923-7eb066f7-4d3d-43a8-8566-b386cde4c343.png">
 2. earthquake
@@ -19,14 +27,14 @@ This API provides information about common natural disaster happening in Thailan
 <br><img width="842" alt="Screen Shot 2564-12-11 at 23 28 23" src="https://user-images.githubusercontent.com/55922403/145684109-00d53bd7-b808-4708-8d99-2dcf6ef05e9b.png">
 4. survey
 <br><img width="865" alt="Screen Shot 2564-12-12 at 00 38 59" src="https://user-images.githubusercontent.com/55922403/145686221-d0905d35-6bbb-4b6e-bc6d-3965685d097c.png">
-### Data visualization features
+## Data visualization features
 1. Earthquake count by magnitude
     > This graph provides the number of earthquake occur compare with the range of earthquake magnitude 
 2. Earthquake count by the risk landslide village
     > This graph provides the number of earthquake occur compare with risk landslide village
 3. Average Monthly Rainfalls
    > This graph provides average rain amount and average rain duration from survey
-### Prerequisites
+## Prerequisites
   1. Install [Node.js](https://nodejs.org/en/download/) (version 3.6 or higher)
   2. Install [Python](https://www.python.org/downloads/) (version 16.13.0 or higher)
   3. Create database in phpMyAdmin (MySQL)
