@@ -3,6 +3,9 @@
 Thailand is one of the country that face many natural disasters. However, these data concerning the topic is not-well format, hard to access, and sparse.
 Many natural disaster such as landslide, earthquake, fire are neglected.
 That’s why we come up of a way to collect those datas in the form of API, for easy usage and access 
+## Overall Architect
+
+<img width="876" alt="Screen Shot 2564-12-12 at 21 10 32" src="https://user-images.githubusercontent.com/55922403/145715860-0445a19e-70b4-4c55-9a44-53f24d819082.png">
 
 
 <!-- ABOUT THE PROJECT -->
@@ -14,9 +17,6 @@ This API provides information about common natural disaster happening in Thailan
 - Landslide risks area in Thailand. Raw data provided by Department of Mineral Resources (DMR).
 - Rainfall and storm data gathered by our group in Google form.
 
-## Overall Architect
-
-<img width="876" alt="Screen Shot 2564-12-12 at 21 10 32" src="https://user-images.githubusercontent.com/55922403/145715860-0445a19e-70b4-4c55-9a44-53f24d819082.png">
 
 ## API features
 1. disaster
